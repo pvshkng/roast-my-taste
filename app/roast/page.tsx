@@ -13,8 +13,15 @@ export default function Page() {
   const [data, setData] = useState({});
 
   const router = useRouter();
-  const code = useSearchParams().get("code") || "";
-  const state = useSearchParams().get("state") || "";
+  let code;
+  let state;
+
+  function Search(code, state) {
+    code = useSearchParams().get("code") || "";
+    state = useSearchParams().get("state") || "";
+
+    return <></>
+  }
 
   /* function refreshResult() {
     sessionStorage.removeItem("spotifyData");
@@ -113,6 +120,7 @@ export default function Page() {
       <>
         <main>
           <Suspense>
+            <Search code={code} state={state} />
             <div className={`page-content`}>
               {isLoggedIn === false ? (
                 <>
