@@ -1,0 +1,282 @@
+@import url("../globals.css");
+
+main {
+  background-color: #000000;
+  transition: all 0.2s ease-in-out;
+}
+
+main light-mode {
+  background-color: #ffffff;
+}
+
+.page-content {
+  background-color: transparent;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  max-width: 1024px;
+  height: 100vh;
+  padding: 0px 20px;
+  transition: all 0.2s ease-in-out;
+
+  h1 {
+    color: #ffffff;
+    font-size: 5vh;
+    font-weight: 900;
+  }
+
+  h2 {
+    color: #ffffff;
+    font-size: 3vh;
+    font-weight: light;
+    text-align: left;
+  }
+}
+
+.page-content h1 {
+  color: #ffffff;
+  font-size: 5vh;
+  font-weight: 900;
+}
+
+.page-content h2 {
+  color: #ffffff;
+  font-size: 3vh;
+  font-weight: light;
+  text-align: left;
+}
+
+.page-content.light-mode h1,
+.page-content.light-mode h2 {
+  color: #000000;
+}
+
+.top-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: auto;
+  padding: 0;
+}
+
+button.login {
+  align-self: flex-end;
+  display: flex;
+  width: auto;
+  position: relative;
+  border: none;
+  border-radius: 5rem;
+  padding: 0px 20px;
+  cursor: pointer;
+  margin: 15px 0;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+button.login.spotify {
+  background-color: #1db954;
+}
+
+button.login.apple {
+  background: linear-gradient(to bottom, #fd5b73, #fa243c);
+}
+
+button.login p {
+  font-size: 2vh;
+  font-weight: 900;
+  color: #000000;
+  padding: 0 20px;
+}
+
+.btn-container {
+  margin-left: auto;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  align-items: flex-end;
+}
+
+.card-container {
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.card {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 30px;
+  width: 36vh;
+  height: 64vh;
+  background-color: #ffffff;
+}
+
+.card.active {
+  display: flex;
+}
+
+.card.light-mode {
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 3px;
+}
+
+.artist-image {
+  border-radius: 10px;
+}
+
+.artist-image-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+  margin: 5px;
+}
+
+.text-container {
+  z-index: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+  border-radius: 15px;
+  font-size: small;
+  color: #000000;
+  margin: 20px 10px;
+  padding: 10px 5px 5px 5px;
+}
+
+.text-container.ai {
+  background: linear-gradient(to bottom right, #d9ffe6, #e7e7e7);
+  border: solid 1px #7affa8;
+}
+
+.text-container.user {
+  background: linear-gradient(to bottom left, #fdf3d9, #e7e7e7);
+  border: solid 1px #faeba7;
+}
+
+.text-container p {
+  margin: 10px 5px 5px 5px;
+}
+
+/* User tag */
+
+.text-container .avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border: 2px solid #ffca58;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  padding: 10px;
+}
+
+.text-container .from {
+  display: flex;
+
+  position: absolute;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 900;
+  color: #000000;
+  border-radius: 15px;
+}
+
+.text-container .from.ai {
+  top: -20px;
+  left: 0px;
+  background-color: #35cf6b;
+}
+
+.text-container .from.user {
+  top: -20px;
+  right: 0px;
+  background-color: #ffed9e;
+  padding-right: 40px;
+}
+
+.see-yours {
+  text-align: right;
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
+  padding: 10px;
+  font-size: 10px;
+  color: #000000;
+}
+
+button.download {
+  background-color: #35cf6b;
+  display: flex;
+  width: auto;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: large;
+  font-weight: 900;
+  border-radius: 20px;
+  padding: 0 10px;
+  transition: all 0.2s ease;
+}
+
+button.download img {
+  padding-right: 10px;
+}
+
+button.download:hover {
+  transform: translateY(-5px);
+}
+
+.tab-selector {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-tab {
+  background-color: #bdbdbd;
+  height: 3px;
+  width: 100px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.card-tab.active {
+  background-color: #69fc9c;
+}
+
+button.tab-nav {
+  background-color: transparent;
+  border: none;
+  z-index: 1000;
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+}
+
+button.tab-nav.previous {
+  left: -70px;
+}
+
+button.tab-nav.next {
+  right: -70px;
+}
+
+button.tab-nav img {
+  height: 50px;
+  width: 50px;
+}
+
+button.tab-nav img {
+  fill: #1db954;
+}
