@@ -1,10 +1,10 @@
 "use client";
-
 import Loading from "@/components/Loading/Loading";
 import downloadAsPng from "@/lib/download-as-png";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import "./you-have-bad-taste.css";
 
 export default function Page() {
@@ -112,137 +112,136 @@ export default function Page() {
     return (
       <>
         <main>
-          <div className={`page-content`}>
-            {isLoggedIn === false ? (
-              <>
-                <div className="top-container">
-                  <h1>How bad is your music taste?</h1>
-                  <h2>Care to let AI music shame yours?</h2>
-                </div>
+          <Suspense>
+            <div className={`page-content`}>
+              {isLoggedIn === false ? (
+                <>
+                  <div className="top-container">
+                    <h1>How bad is your music taste?</h1>
+                    <h2>Care to let AI music shame yours?</h2>
+                  </div>
 
-                {/* blank space */}
-                <div style={{ height: "50px" }} />
+                  {/* blank space */}
+                  <div style={{ height: "50px" }} />
 
-                <div className="btn-container">
-                  <button
-                    className={`login spotify`}
-                    onClick={() => {
-                      login("spotify");
-                    }}
-                  >
-                    {/* login */}
+                  <div className="btn-container">
+                    <button
+                      className={`login spotify`}
+                      onClick={() => {
+                        login("spotify");
+                      }}
+                    >
+                      {/* login */}
 
-                    <img src="icon/spotify.svg" />
-                    <p>Login to Spotify</p>
-                  </button>
+                      <img src="icon/spotify.svg" />
+                      <p>Login to Spotify</p>
+                    </button>
 
-                  <button
-                    className={`login apple`}
-                    onClick={() => {
-                      login("apple");
-                    }}
-                  >
-                    <img src="icon/applemusic.svg" />
-                    <p>Login to Apple Music</p>
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="tab-selector">
-                  <div className="card-tab active"></div>
-                  <div className="card-tab"></div>
-                  <div className="card-tab"></div>
-                </div>
+                    <button
+                      className={`login apple`}
+                      onClick={() => {
+                        login("apple");
+                      }}
+                    >
+                      <img src="icon/applemusic.svg" />
+                      <p>Login to Apple Music</p>
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="tab-selector">
+                    <div className="card-tab active"></div>
+                    <div className="card-tab"></div>
+                    <div className="card-tab"></div>
+                  </div>
 
-                <div className="card-container">
-                  {/* Navigation Buttons */}
-                  <button
-                    className="tab-nav previous"
-                    onClick={() => {
-                      navigateTab("previous");
-                    }}
-                  >
-                    <img src="icon/caret-left.svg" />
-                  </button>
-                  <button
-                    className="tab-nav next"
-                    onClick={() => {
-                      navigateTab("next");
-                    }}
-                  >
-                    <img src="icon/caret-right.svg" />
-                  </button>
+                  <div className="card-container">
+                    {/* Navigation Buttons */}
+                    <button
+                      className="tab-nav previous"
+                      onClick={() => {
+                        navigateTab("previous");
+                      }}
+                    >
+                      <img src="icon/caret-left.svg" />
+                    </button>
+                    <button
+                      className="tab-nav next"
+                      onClick={() => {
+                        navigateTab("next");
+                      }}
+                    >
+                      <img src="icon/caret-right.svg" />
+                    </button>
 
-                  <div
-                    className={`card active`}
-                    id="download"
-                  >
-                    {/* <p>
+                    <div className={`card active`} id="download">
+                      {/* <p>
                     {data.names ? data.names : "names are not here yet bro"}
                   </p> */}
 
-                    <div className="text-container user">
-                      <div className="from user">
-                        You {/* replace with username */}
-                        <div className="avatar">
-                          <img
-                            src="icon/user.svg"
-                            width="16px"
-                            height="16px"
-                          />
+                      <div className="text-container user">
+                        <div className="from user">
+                          You {/* replace with username */}
+                          <div className="avatar">
+                            <img
+                              src="icon/user.svg"
+                              width="16px"
+                              height="16px"
+                            />
+                          </div>
+                        </div>
+
+                        <p>
+                          Sup! These are my favorite artists, what do you think
+                          about my music taste?
+                        </p>
+
+                        <div className="artist-image-container">
+                          {data.images
+                            ? data.images.map((link, index) => (
+                                <img
+                                  className="artist-image"
+                                  src={link}
+                                  width={100}
+                                  height={100}
+                                  key={index}
+                                  alt="artist"
+                                />
+                              ))
+                            : "Image not available"}
                         </div>
                       </div>
 
-                      <p>
-                        Sup! These are my favorite artists, what do you think
-                        about my music taste?
-                      </p>
+                      <div className="text-container ai">
+                        <div className="from ai">AI says...</div>
+                        <p>
+                          {data.answer
+                            ? data.answer
+                            : "answer are not here yet bro"}
+                        </p>
+                      </div>
 
-                      <div className="artist-image-container">
-                        {data.images
-                          ? data.images.map((link, index) => (
-                              <img
-                                className="artist-image"
-                                src={link}
-                                width={100}
-                                height={100}
-                                key={index}
-                                alt="artist"
-                              />
-                            ))
-                          : "Image not available"}
+                      <div className="see-yours">
+                        Made by <strong>Puvish</strong>
+                        <br />
+                        Create your own at{" "}
+                        <strong>roastmytaste.vercel.app</strong>
                       </div>
                     </div>
 
-                    <div className="text-container ai">
-                      <div className="from ai">AI says...</div>
-                      <p>
-                        {data.answer
-                          ? data.answer
-                          : "answer are not here yet bro"}
-                      </p>
-                    </div>
-
-                    <div className="see-yours">
-                      Made by <strong>Puvish</strong>
-                      <br />
-                      Create your own at{" "}
-                      <strong>roastmytaste.vercel.app</strong>
-                    </div>
+                    <div className="card">2</div>
+                    <div className="card">3</div>
                   </div>
 
-                  <div className="card">2</div>
-                  <div className="card">3</div>
-                </div>
-
-                <button className="download" onClick={downloadAsPng}>
-                  <img height="24px" src="/icon/download.svg" />
-                  <p className="text-white">Download</p>
-                </button>
-              </>
-            )}
-          </div>
+                  <button className="download" onClick={downloadAsPng}>
+                    <img height="24px" src="/icon/download.svg" />
+                    <p className="text-white">Download</p>
+                  </button>
+                </>
+              )}
+            </div>
+          </Suspense>
         </main>
       </>
     );
