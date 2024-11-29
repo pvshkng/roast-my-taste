@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import "./you-have-bad-taste.css";
-
+/* eslint-disable */
 export default function Page() {
   const [isLoading, setLoading] = useState(true); //default false
   const [isLoggedIn, setIsLoggedIn] = useState(false); //default false
@@ -16,7 +16,7 @@ export default function Page() {
   let code;
   let state;
 
-  function Search(code: any, state: any) {
+  function Search(code, state) {
     code = useSearchParams().get("code") || "";
     state = useSearchParams().get("state") || "";
 
