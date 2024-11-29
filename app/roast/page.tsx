@@ -16,11 +16,13 @@ export default function Page() {
   let code;
   let state;
 
-  function Search(code, state) {
+  function Search(code: any, state: any) {
     code = useSearchParams().get("code") || "";
     state = useSearchParams().get("state") || "";
 
-    return <></>
+    if (code && state) {
+      return <></>;
+    }
   }
 
   /* function refreshResult() {
@@ -40,7 +42,7 @@ export default function Page() {
           setLoading(false);
         } else {
           //Callback
-          if (code && state) {
+          if (code) {
             setLoading(true);
 
             const body = JSON.stringify({ code: code });
